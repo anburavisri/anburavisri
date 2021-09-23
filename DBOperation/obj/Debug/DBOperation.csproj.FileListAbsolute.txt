@@ -1,0 +1,12 @@
+C:\Users\anbur\source\repos\ClientManager\DBOperation\bin\Debug\DBOperation.dll.config
+C:\Users\anbur\source\repos\ClientManager\DBOperation\bin\Debug\DBOperation.dll
+C:\Users\anbur\source\repos\ClientManager\DBOperation\bin\Debug\DBOperation.pdb
+C:\Users\anbur\source\repos\ClientManager\DBOperation\bin\Debug\EntityFramework.dll
+C:\Users\anbur\source\repos\ClientManager\DBOperation\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\anbur\source\repos\ClientManager\DBOperation\bin\Debug\EntityFramework.xml
+C:\Users\anbur\source\repos\ClientManager\DBOperation\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\anbur\source\repos\ClientManager\DBOperation\obj\Debug\DBOperation.csproj.CoreCompileInputs.cache
+C:\Users\anbur\source\repos\ClientManager\DBOperation\obj\Debug\DBOperation.csproj.CopyComplete
+C:\Users\anbur\source\repos\ClientManager\DBOperation\obj\Debug\DBOperation.dll
+C:\Users\anbur\source\repos\ClientManager\DBOperation\obj\Debug\DBOperation.pdb
+C:\Users\anbur\source\repos\ClientManager\DBOperation\obj\Debug\DBOperation.csproj.AssemblyReference.cache

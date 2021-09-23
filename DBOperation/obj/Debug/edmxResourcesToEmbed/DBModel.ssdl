@@ -1,0 +1,868 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClientManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ClientContacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="ContactId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContactPersonName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactType" Type="int" Nullable="false" />
+    <Property Name="ContactPersonName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="AddressLine1" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Website" Type="nvarchar" MaxLength="500" />
+    <Property Name="WorkPhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PersonalPhoneNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductImage" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="PurchasedDate" Type="datetime" Nullable="false" />
+    <Property Name="ExpiredOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProjectClient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="ClientId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ClientCompany" Type="int" Nullable="false" />
+    <Property Name="ProjectLead" Type="int" Nullable="false" />
+    <Property Name="EstimatedBudget" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TotalAmountSpent" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EstimatedEndDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProjectStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RepresentativeSaleTarget">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="SalesTarget" Type="int" Nullable="false" />
+    <Property Name="CallTarget" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="CompletedCount" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleActivity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="ClientName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ClientEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="ClientPhoneNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Capacity" Type="nvarchar" MaxLength="500" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="RecentCallDate" Type="datetime" Nullable="false" />
+    <Property Name="AnticipatedClosingDate" Type="datetime" />
+    <Property Name="NoOfFollowUps" Type="int" />
+    <Property Name="Remarks" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SalesRepresentativeId" Type="int" Nullable="false" />
+    <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="InvoiceAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="DateOfClosing" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="AnticipatedClosing" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NoOfFollowUps" Type="int" Nullable="false" />
+    <Property Name="NextFollowUpDate" Type="datetime" />
+    <Property Name="RepresentativeId" Type="int" Nullable="false" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SalesStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserContacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ContactId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddressLine1" Type="nvarchar" MaxLength="100" />
+    <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReportingManager" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <Association Name="FK_ClientContacts_Clients">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+    <End Role="ClientContacts" Type="Self.ClientContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientContacts">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientContacts_Contact">
+    <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+    <End Role="ClientContacts" Type="Self.ClientContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientContacts">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientContacts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ClientContacts" Type="Self.ClientContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientContacts">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientContacts_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ClientContacts" Type="Self.ClientContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientContacts">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clients_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Clients">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clients_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Clients">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectClient_ClientDetails">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+    <End Role="ProjectClient" Type="Self.ProjectClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectClient">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectClient_ProjectDetails">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="ProjectClient" Type="Self.ProjectClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectClient">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetails_ProjectStatus">
+    <End Role="ProjectStatus" Type="Self.ProjectStatus" Multiplicity="0..1" />
+    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetails_UserDetails">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="ProjectLead" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepresentativeSaleTarget_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RepresentativeSaleTarget" Type="Self.RepresentativeSaleTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepresentativeSaleTarget">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepresentativeSaleTarget_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RepresentativeSaleTarget" Type="Self.RepresentativeSaleTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepresentativeSaleTarget">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="SaleActivity" Type="Self.SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_SalesStatus">
+    <End Role="SalesStatus" Type="Self.SalesStatus" Multiplicity="1" />
+    <End Role="SaleActivity" Type="Self.SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="SaleActivity" Type="Self.SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="SalesRepresentativeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="SaleActivity" Type="Self.SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="SaleActivity" Type="Self.SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetails_SalesStatus">
+    <End Role="SalesStatus" Type="Self.SalesStatus" Multiplicity="1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetails_UserDetails">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="RepresentativeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleProducts_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="SaleProducts" Type="Self.SaleProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleProducts">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleProducts_Sales">
+    <End Role="Sales" Type="Self.Sales" Multiplicity="1" />
+    <End Role="SaleProducts" Type="Self.SaleProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sales">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleProducts">
+        <PropertyRef Name="SaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserContacts_ContactDetails">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserContacts" Type="Self.UserContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContacts">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserContacts_UserDetails">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserContacts" Type="Self.UserContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContacts">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserContacts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserContacts" Type="Self.UserContacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContacts">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles1">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Users1" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users1">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Users1" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users1">
+        <PropertyRef Name="ReportingManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Users1" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users1">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetMonthlySalesReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ClientManagerModelStoreContainer">
+    <EntitySet Name="ClientContacts" EntityType="Self.ClientContacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectClient" EntityType="Self.ProjectClient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RepresentativeSaleTarget" EntityType="Self.RepresentativeSaleTarget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleActivity" EntityType="Self.SaleActivity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleProducts" EntityType="Self.SaleProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesStatus" EntityType="Self.SalesStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserContacts" EntityType="Self.UserContacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ClientContacts_Clients" Association="Self.FK_ClientContacts_Clients">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="ClientContacts" EntitySet="ClientContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientContacts_Contact" Association="Self.FK_ClientContacts_Contact">
+      <End Role="Contact" EntitySet="Contact" />
+      <End Role="ClientContacts" EntitySet="ClientContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientContacts_Users" Association="Self.FK_ClientContacts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ClientContacts" EntitySet="ClientContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientContacts_Users1" Association="Self.FK_ClientContacts_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ClientContacts" EntitySet="ClientContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clients_Users" Association="Self.FK_Clients_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Clients" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clients_Users1" Association="Self.FK_Clients_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Clients" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_Users" Association="Self.FK_Contact_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_Users1" Association="Self.FK_Contact_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectClient_ClientDetails" Association="Self.FK_ProjectClient_ClientDetails">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="ProjectClient" EntitySet="ProjectClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectClient_ProjectDetails" Association="Self.FK_ProjectClient_ProjectDetails">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="ProjectClient" EntitySet="ProjectClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetails_ProjectStatus" Association="Self.FK_ProjectDetails_ProjectStatus">
+      <End Role="ProjectStatus" EntitySet="ProjectStatus" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetails_UserDetails" Association="Self.FK_ProjectDetails_UserDetails">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepresentativeSaleTarget_Users" Association="Self.FK_RepresentativeSaleTarget_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RepresentativeSaleTarget" EntitySet="RepresentativeSaleTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepresentativeSaleTarget_Users1" Association="Self.FK_RepresentativeSaleTarget_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RepresentativeSaleTarget" EntitySet="RepresentativeSaleTarget" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Users" Association="Self.FK_Roles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Users1" Association="Self.FK_Roles_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_Products" Association="Self.FK_SaleActivity_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SaleActivity" EntitySet="SaleActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_SalesStatus" Association="Self.FK_SaleActivity_SalesStatus">
+      <End Role="SalesStatus" EntitySet="SalesStatus" />
+      <End Role="SaleActivity" EntitySet="SaleActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_Users" Association="Self.FK_SaleActivity_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SaleActivity" EntitySet="SaleActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_Users1" Association="Self.FK_SaleActivity_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SaleActivity" EntitySet="SaleActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_Users2" Association="Self.FK_SaleActivity_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SaleActivity" EntitySet="SaleActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetails_SalesStatus" Association="Self.FK_SaleDetails_SalesStatus">
+      <End Role="SalesStatus" EntitySet="SalesStatus" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetails_UserDetails" Association="Self.FK_SaleDetails_UserDetails">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleProducts_Products" Association="Self.FK_SaleProducts_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SaleProducts" EntitySet="SaleProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleProducts_Sales" Association="Self.FK_SaleProducts_Sales">
+      <End Role="Sales" EntitySet="Sales" />
+      <End Role="SaleProducts" EntitySet="SaleProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Users" Association="Self.FK_Sales_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserContacts_ContactDetails" Association="Self.FK_UserContacts_ContactDetails">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserContacts" EntitySet="UserContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserContacts_UserDetails" Association="Self.FK_UserContacts_UserDetails">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserContacts" EntitySet="UserContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserContacts_Users" Association="Self.FK_UserContacts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserContacts" EntitySet="UserContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles1" Association="Self.FK_UserRoles_Roles1">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users" Association="Self.FK_UserRoles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users1" Association="Self.FK_UserRoles_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users2" Association="Self.FK_UserRoles_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users1" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users1" Association="Self.FK_Users_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users1" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users2" Association="Self.FK_Users_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users1" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

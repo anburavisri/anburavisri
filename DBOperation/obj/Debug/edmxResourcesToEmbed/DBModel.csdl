@@ -1,0 +1,948 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClientManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ClientManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ClientContacts" EntityType="ClientManagerModel.ClientContact" />
+    <EntitySet Name="Clients" EntityType="ClientManagerModel.Client" />
+    <EntitySet Name="Contacts" EntityType="ClientManagerModel.Contact" />
+    <EntitySet Name="Products" EntityType="ClientManagerModel.Product" />
+    <EntitySet Name="ProjectClients" EntityType="ClientManagerModel.ProjectClient" />
+    <EntitySet Name="Projects" EntityType="ClientManagerModel.Project" />
+    <EntitySet Name="ProjectStatus" EntityType="ClientManagerModel.ProjectStatu" />
+    <EntitySet Name="RepresentativeSaleTargets" EntityType="ClientManagerModel.RepresentativeSaleTarget" />
+    <EntitySet Name="Roles" EntityType="ClientManagerModel.Role" />
+    <EntitySet Name="SaleActivities" EntityType="ClientManagerModel.SaleActivity" />
+    <EntitySet Name="SaleProducts" EntityType="ClientManagerModel.SaleProduct" />
+    <EntitySet Name="Sales" EntityType="ClientManagerModel.Sale" />
+    <EntitySet Name="SalesStatus" EntityType="ClientManagerModel.SalesStatu" />
+    <EntitySet Name="UserContacts" EntityType="ClientManagerModel.UserContact" />
+    <EntitySet Name="UserRoles" EntityType="ClientManagerModel.UserRole" />
+    <EntitySet Name="Users" EntityType="ClientManagerModel.User" />
+    <AssociationSet Name="FK_ClientContacts_Clients" Association="ClientManagerModel.FK_ClientContacts_Clients">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="ClientContact" EntitySet="ClientContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientContacts_Contact" Association="ClientManagerModel.FK_ClientContacts_Contact">
+      <End Role="Contact" EntitySet="Contacts" />
+      <End Role="ClientContact" EntitySet="ClientContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientContacts_Users" Association="ClientManagerModel.FK_ClientContacts_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ClientContact" EntitySet="ClientContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientContacts_Users1" Association="ClientManagerModel.FK_ClientContacts_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ClientContact" EntitySet="ClientContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clients_Users" Association="ClientManagerModel.FK_Clients_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clients_Users1" Association="ClientManagerModel.FK_Clients_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectClient_ClientDetails" Association="ClientManagerModel.FK_ProjectClient_ClientDetails">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="ProjectClient" EntitySet="ProjectClients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_Users" Association="ClientManagerModel.FK_Contact_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_Users1" Association="ClientManagerModel.FK_Contact_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_Products" Association="ClientManagerModel.FK_SaleActivity_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="SaleActivity" EntitySet="SaleActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleProducts_Products" Association="ClientManagerModel.FK_SaleProducts_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="SaleProduct" EntitySet="SaleProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectClient_ProjectDetails" Association="ClientManagerModel.FK_ProjectClient_ProjectDetails">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectClient" EntitySet="ProjectClients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetails_ProjectStatus" Association="ClientManagerModel.FK_ProjectDetails_ProjectStatus">
+      <End Role="ProjectStatu" EntitySet="ProjectStatus" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDetails_UserDetails" Association="ClientManagerModel.FK_ProjectDetails_UserDetails">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepresentativeSaleTarget_Users" Association="ClientManagerModel.FK_RepresentativeSaleTarget_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="RepresentativeSaleTarget" EntitySet="RepresentativeSaleTargets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RepresentativeSaleTarget_Users1" Association="ClientManagerModel.FK_RepresentativeSaleTarget_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="RepresentativeSaleTarget" EntitySet="RepresentativeSaleTargets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Users" Association="ClientManagerModel.FK_Roles_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Roles_Users1" Association="ClientManagerModel.FK_Roles_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles1" Association="ClientManagerModel.FK_UserRoles_Roles1">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_SalesStatus" Association="ClientManagerModel.FK_SaleActivity_SalesStatus">
+      <End Role="SalesStatu" EntitySet="SalesStatus" />
+      <End Role="SaleActivity" EntitySet="SaleActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_Users" Association="ClientManagerModel.FK_SaleActivity_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SaleActivity" EntitySet="SaleActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_Users1" Association="ClientManagerModel.FK_SaleActivity_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SaleActivity" EntitySet="SaleActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleActivity_Users2" Association="ClientManagerModel.FK_SaleActivity_Users2">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SaleActivity" EntitySet="SaleActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleProducts_Sales" Association="ClientManagerModel.FK_SaleProducts_Sales">
+      <End Role="Sale" EntitySet="Sales" />
+      <End Role="SaleProduct" EntitySet="SaleProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetails_SalesStatus" Association="ClientManagerModel.FK_SaleDetails_SalesStatus">
+      <End Role="SalesStatu" EntitySet="SalesStatus" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetails_UserDetails" Association="ClientManagerModel.FK_SaleDetails_UserDetails">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Users" Association="ClientManagerModel.FK_Sales_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserContacts_ContactDetails" Association="ClientManagerModel.FK_UserContacts_ContactDetails">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserContact" EntitySet="UserContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserContacts_UserDetails" Association="ClientManagerModel.FK_UserContacts_UserDetails">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserContact" EntitySet="UserContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserContacts_Users" Association="ClientManagerModel.FK_UserContacts_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserContact" EntitySet="UserContacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles" Association="ClientManagerModel.FK_UserRoles_Roles">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users" Association="ClientManagerModel.FK_UserRoles_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users1" Association="ClientManagerModel.FK_UserRoles_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users2" Association="ClientManagerModel.FK_UserRoles_Users2">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users" Association="ClientManagerModel.FK_Users_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="User1" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users1" Association="ClientManagerModel.FK_Users_Users1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="User1" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users2" Association="ClientManagerModel.FK_Users_Users2">
+      <End Role="User" EntitySet="Users" />
+      <End Role="User1" EntitySet="Users" />
+    </AssociationSet>
+    <FunctionImport Name="GetMonthlySalesReport" ReturnType="Collection(ClientManagerModel.GetMonthlySalesReport_Result)" />
+  </EntityContainer>
+  <EntityType Name="ClientContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="ContactId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="ClientManagerModel.FK_ClientContacts_Clients" FromRole="ClientContact" ToRole="Client" />
+    <NavigationProperty Name="Contact" Relationship="ClientManagerModel.FK_ClientContacts_Contact" FromRole="ClientContact" ToRole="Contact" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_ClientContacts_Users" FromRole="ClientContact" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_ClientContacts_Users1" FromRole="ClientContact" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ClientName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPersonName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="ClientContacts" Relationship="ClientManagerModel.FK_ClientContacts_Clients" FromRole="Client" ToRole="ClientContact" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_Clients_Users" FromRole="Client" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_Clients_Users1" FromRole="Client" ToRole="User" />
+    <NavigationProperty Name="ProjectClients" Relationship="ClientManagerModel.FK_ProjectClient_ClientDetails" FromRole="Client" ToRole="ProjectClient" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactType" Type="Int32" Nullable="false" />
+    <Property Name="ContactPersonName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PersonalPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="ClientContacts" Relationship="ClientManagerModel.FK_ClientContacts_Contact" FromRole="Contact" ToRole="ClientContact" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_Contact_Users" FromRole="Contact" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_Contact_Users1" FromRole="Contact" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="PurchasedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiredOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleActivities" Relationship="ClientManagerModel.FK_SaleActivity_Products" FromRole="Product" ToRole="SaleActivity" />
+    <NavigationProperty Name="SaleProducts" Relationship="ClientManagerModel.FK_SaleProducts_Products" FromRole="Product" ToRole="SaleProduct" />
+  </EntityType>
+  <EntityType Name="ProjectClient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="ClientId" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Client" Relationship="ClientManagerModel.FK_ProjectClient_ClientDetails" FromRole="ProjectClient" ToRole="Client" />
+    <NavigationProperty Name="Project" Relationship="ClientManagerModel.FK_ProjectClient_ProjectDetails" FromRole="ProjectClient" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="ClientCompany" Type="Int32" Nullable="false" />
+    <Property Name="ProjectLead" Type="Int32" Nullable="false" />
+    <Property Name="EstimatedBudget" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TotalAmountSpent" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EstimatedEndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProjectClients" Relationship="ClientManagerModel.FK_ProjectClient_ProjectDetails" FromRole="Project" ToRole="ProjectClient" />
+    <NavigationProperty Name="ProjectStatu" Relationship="ClientManagerModel.FK_ProjectDetails_ProjectStatus" FromRole="Project" ToRole="ProjectStatu" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_ProjectDetails_UserDetails" FromRole="Project" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ProjectStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Projects" Relationship="ClientManagerModel.FK_ProjectDetails_ProjectStatus" FromRole="ProjectStatu" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="RepresentativeSaleTarget">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="SalesTarget" Type="Int32" Nullable="false" />
+    <Property Name="CallTarget" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CompletedCount" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_RepresentativeSaleTarget_Users" FromRole="RepresentativeSaleTarget" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_RepresentativeSaleTarget_Users1" FromRole="RepresentativeSaleTarget" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_Roles_Users" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_Roles_Users1" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="UserRoles" Relationship="ClientManagerModel.FK_UserRoles_Roles1" FromRole="Role" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="SaleActivity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ClientEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ClientPhoneNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Capacity" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RecentCallDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AnticipatedClosingDate" Type="DateTime" Precision="3" />
+    <Property Name="NoOfFollowUps" Type="Int32" />
+    <Property Name="Remarks" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SalesRepresentativeId" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InvoiceAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DateOfClosing" Type="DateTime" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="ClientManagerModel.FK_SaleActivity_Products" FromRole="SaleActivity" ToRole="Product" />
+    <NavigationProperty Name="SalesStatu" Relationship="ClientManagerModel.FK_SaleActivity_SalesStatus" FromRole="SaleActivity" ToRole="SalesStatu" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_SaleActivity_Users" FromRole="SaleActivity" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_SaleActivity_Users1" FromRole="SaleActivity" ToRole="User" />
+    <NavigationProperty Name="User2" Relationship="ClientManagerModel.FK_SaleActivity_Users2" FromRole="SaleActivity" ToRole="User" />
+  </EntityType>
+  <EntityType Name="SaleProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="ClientManagerModel.FK_SaleProducts_Products" FromRole="SaleProduct" ToRole="Product" />
+    <NavigationProperty Name="Sale" Relationship="ClientManagerModel.FK_SaleProducts_Sales" FromRole="SaleProduct" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="AnticipatedClosing" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NoOfFollowUps" Type="Int32" Nullable="false" />
+    <Property Name="NextFollowUpDate" Type="DateTime" Precision="3" />
+    <Property Name="RepresentativeId" Type="Int32" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleProducts" Relationship="ClientManagerModel.FK_SaleProducts_Sales" FromRole="Sale" ToRole="SaleProduct" />
+    <NavigationProperty Name="SalesStatu" Relationship="ClientManagerModel.FK_SaleDetails_SalesStatus" FromRole="Sale" ToRole="SalesStatu" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_SaleDetails_UserDetails" FromRole="Sale" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_Sales_Users" FromRole="Sale" ToRole="User" />
+  </EntityType>
+  <EntityType Name="SalesStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SaleActivities" Relationship="ClientManagerModel.FK_SaleActivity_SalesStatus" FromRole="SalesStatu" ToRole="SaleActivity" />
+    <NavigationProperty Name="Sales" Relationship="ClientManagerModel.FK_SaleDetails_SalesStatus" FromRole="SalesStatu" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="UserContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ContactId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_UserContacts_ContactDetails" FromRole="UserContact" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_UserContacts_UserDetails" FromRole="UserContact" ToRole="User" />
+    <NavigationProperty Name="User2" Relationship="ClientManagerModel.FK_UserContacts_Users" FromRole="UserContact" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="ClientManagerModel.FK_UserRoles_Roles1" FromRole="UserRole" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="ClientManagerModel.FK_UserRoles_Roles" FromRole="UserRole" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_UserRoles_Users" FromRole="UserRole" ToRole="User" />
+    <NavigationProperty Name="User2" Relationship="ClientManagerModel.FK_UserRoles_Users1" FromRole="UserRole" ToRole="User" />
+    <NavigationProperty Name="User3" Relationship="ClientManagerModel.FK_UserRoles_Users2" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="ReportingManager" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <NavigationProperty Name="ClientContacts" Relationship="ClientManagerModel.FK_ClientContacts_Users" FromRole="User" ToRole="ClientContact" />
+    <NavigationProperty Name="ClientContacts1" Relationship="ClientManagerModel.FK_ClientContacts_Users1" FromRole="User" ToRole="ClientContact" />
+    <NavigationProperty Name="Clients" Relationship="ClientManagerModel.FK_Clients_Users" FromRole="User" ToRole="Client" />
+    <NavigationProperty Name="Clients1" Relationship="ClientManagerModel.FK_Clients_Users1" FromRole="User" ToRole="Client" />
+    <NavigationProperty Name="Contacts" Relationship="ClientManagerModel.FK_Contact_Users" FromRole="User" ToRole="Contact" />
+    <NavigationProperty Name="Contacts1" Relationship="ClientManagerModel.FK_Contact_Users1" FromRole="User" ToRole="Contact" />
+    <NavigationProperty Name="Projects" Relationship="ClientManagerModel.FK_ProjectDetails_UserDetails" FromRole="User" ToRole="Project" />
+    <NavigationProperty Name="RepresentativeSaleTargets" Relationship="ClientManagerModel.FK_RepresentativeSaleTarget_Users" FromRole="User" ToRole="RepresentativeSaleTarget" />
+    <NavigationProperty Name="RepresentativeSaleTargets1" Relationship="ClientManagerModel.FK_RepresentativeSaleTarget_Users1" FromRole="User" ToRole="RepresentativeSaleTarget" />
+    <NavigationProperty Name="Roles" Relationship="ClientManagerModel.FK_Roles_Users" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Roles1" Relationship="ClientManagerModel.FK_Roles_Users1" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="SaleActivities" Relationship="ClientManagerModel.FK_SaleActivity_Users" FromRole="User" ToRole="SaleActivity" />
+    <NavigationProperty Name="SaleActivities1" Relationship="ClientManagerModel.FK_SaleActivity_Users1" FromRole="User" ToRole="SaleActivity" />
+    <NavigationProperty Name="SaleActivities2" Relationship="ClientManagerModel.FK_SaleActivity_Users2" FromRole="User" ToRole="SaleActivity" />
+    <NavigationProperty Name="Sales" Relationship="ClientManagerModel.FK_SaleDetails_UserDetails" FromRole="User" ToRole="Sale" />
+    <NavigationProperty Name="Sales1" Relationship="ClientManagerModel.FK_Sales_Users" FromRole="User" ToRole="Sale" />
+    <NavigationProperty Name="UserContacts" Relationship="ClientManagerModel.FK_UserContacts_ContactDetails" FromRole="User" ToRole="UserContact" />
+    <NavigationProperty Name="UserContacts1" Relationship="ClientManagerModel.FK_UserContacts_UserDetails" FromRole="User" ToRole="UserContact" />
+    <NavigationProperty Name="UserContacts2" Relationship="ClientManagerModel.FK_UserContacts_Users" FromRole="User" ToRole="UserContact" />
+    <NavigationProperty Name="UserRoles" Relationship="ClientManagerModel.FK_UserRoles_Roles" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="UserRoles1" Relationship="ClientManagerModel.FK_UserRoles_Users" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="UserRoles2" Relationship="ClientManagerModel.FK_UserRoles_Users1" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="UserRoles3" Relationship="ClientManagerModel.FK_UserRoles_Users2" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="Users1" Relationship="ClientManagerModel.FK_Users_Users" FromRole="User" ToRole="User1" />
+    <NavigationProperty Name="User1" Relationship="ClientManagerModel.FK_Users_Users" FromRole="User1" ToRole="User" />
+    <NavigationProperty Name="Users11" Relationship="ClientManagerModel.FK_Users_Users1" FromRole="User" ToRole="User1" />
+    <NavigationProperty Name="User2" Relationship="ClientManagerModel.FK_Users_Users1" FromRole="User1" ToRole="User" />
+    <NavigationProperty Name="Users12" Relationship="ClientManagerModel.FK_Users_Users2" FromRole="User" ToRole="User1" />
+    <NavigationProperty Name="User3" Relationship="ClientManagerModel.FK_Users_Users2" FromRole="User1" ToRole="User" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_ClientContacts_Clients">
+    <End Type="ClientManagerModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="ClientManagerModel.ClientContact" Role="ClientContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientContact">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientContacts_Contact">
+    <End Type="ClientManagerModel.Contact" Role="Contact" Multiplicity="1" />
+    <End Type="ClientManagerModel.ClientContact" Role="ClientContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientContact">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientContacts_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.ClientContact" Role="ClientContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientContact">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientContacts_Users1">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.ClientContact" Role="ClientContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientContact">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clients_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clients_Users1">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectClient_ClientDetails">
+    <End Type="ClientManagerModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.ProjectClient" Role="ProjectClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectClient">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_Users1">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_Products">
+    <End Type="ClientManagerModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.SaleActivity" Role="SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleProducts_Products">
+    <End Type="ClientManagerModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="ClientManagerModel.SaleProduct" Role="SaleProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleProduct">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectClient_ProjectDetails">
+    <End Type="ClientManagerModel.Project" Role="Project" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.ProjectClient" Role="ProjectClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectClient">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetails_ProjectStatus">
+    <End Type="ClientManagerModel.ProjectStatu" Role="ProjectStatu" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.Project" Role="Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectStatu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDetails_UserDetails">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.Project" Role="Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="ProjectLead" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepresentativeSaleTarget_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.RepresentativeSaleTarget" Role="RepresentativeSaleTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepresentativeSaleTarget">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RepresentativeSaleTarget_Users1">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.RepresentativeSaleTarget" Role="RepresentativeSaleTarget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RepresentativeSaleTarget">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Roles_Users1">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles1">
+    <End Type="ClientManagerModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="ClientManagerModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_SalesStatus">
+    <End Type="ClientManagerModel.SalesStatu" Role="SalesStatu" Multiplicity="1" />
+    <End Type="ClientManagerModel.SaleActivity" Role="SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesStatu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.SaleActivity" Role="SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="SalesRepresentativeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_Users1">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.SaleActivity" Role="SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleActivity_Users2">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.SaleActivity" Role="SaleActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleActivity">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleProducts_Sales">
+    <End Type="ClientManagerModel.Sale" Role="Sale" Multiplicity="1" />
+    <End Type="ClientManagerModel.SaleProduct" Role="SaleProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleProduct">
+        <PropertyRef Name="SaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetails_SalesStatus">
+    <End Type="ClientManagerModel.SalesStatu" Role="SalesStatu" Multiplicity="1" />
+    <End Type="ClientManagerModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalesStatu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetails_UserDetails">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="RepresentativeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.Sale" Role="Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserContacts_ContactDetails">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.UserContact" Role="UserContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContact">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserContacts_UserDetails">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.UserContact" Role="UserContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContact">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserContacts_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.UserContact" Role="UserContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserContact">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users1">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users2">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="1" />
+    <End Type="ClientManagerModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.User" Role="User1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="ModifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users1">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.User" Role="User1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="ReportingManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users2">
+    <End Type="ClientManagerModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ClientManagerModel.User" Role="User1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetMonthlySalesReport_Result">
+    <Property Type="Int32" Name="mname" Nullable="true" />
+    <Property Type="Int32" Name="calls" Nullable="true" />
+    <Property Type="Int32" Name="orders" Nullable="true" />
+    <Property Type="Int32" Name="cancels" Nullable="true" />
+  </ComplexType>
+</Schema>
