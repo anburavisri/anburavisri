@@ -73,7 +73,7 @@ namespace ClientManager.Controllers
 
                         Session["UserDetails"] = userDetails;
 
-                        jsonRes = new JsonReponse { message = "Valid Credentials", status = "Success", redirectURL = "/Home/MyDashboard" };
+                        jsonRes = new JsonReponse { message = "Valid Credentials", status = "Success", redirectURL = "/Home/" + (userDetails.UserRoles.Any(wh => wh.RoleName.ToLower() == "admin") ? "AdminDashboard" : (userDetails.UserRoles.Any(wh => wh.RoleName.ToLower() == "manager")) ? "ManagerDashboard" : "MyDashboard")};
                     }
                 }
             }
