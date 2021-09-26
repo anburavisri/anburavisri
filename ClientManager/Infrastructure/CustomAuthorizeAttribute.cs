@@ -46,12 +46,12 @@ namespace ClientManager.Infrastructure
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Result = new RedirectToRouteResult(
-               new RouteValueDictionary
-               {
-                    { "controller", "Home" },
-                    { "action", "NotAuthorized" }
-               });
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
+            {
+                action = "NotAuthorized",
+                controller = "Home",
+                area = ""
+            }));
         }
     }
 }

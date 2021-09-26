@@ -22,7 +22,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                        <li class="breadcrumb-item active">User List</li>
+                        <li class="breadcrumb-item"><a href="#">User </a></li>
+                        <li class="breadcrumb-item active">List</li>
                     </ol>
                 </div>
             </div>
@@ -36,7 +37,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">List of User Details</h3>
+                            <div class="row">
+                                <div class="col-4 col-sm-8">
+                                    <h3 class="card-title">List of User Details</h3>
+                                </div>
+                                <div class="col-4 col-sm-2">
+                                </div>
+                                @*<div class="col-4 col-sm-2">
+                                        <button type="button" style="float:right" class="btn btn-block btn-primary btn-sm " onclick="javascript:fnToggleAdvSearch('1')"><i class="fa fa-search"></i> Adv. Search</button>
+                                    </div>*@
+                                <div class="col-4 col-sm-2">
+                                    <button type="button" style="float:right" class="btn btn-block btn-primary btn-sm " onclick="javascript:location.href='/Admin/User/Create'"><i class="fa fa-plus"></i> New</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -48,7 +61,31 @@
                                             Email
                                         </th>
                                         <th>
+                                            Full Name
+                                        </th>
+                                        <th>
                                             Is Active ?
+                                        </th>
+                                        <th>
+                                            Reporting Manager
+                                        </th>
+                                        <th>
+                                            Sale Target
+                                        </th>
+                                        <th>
+                                            AddressLine1
+                                        </th>
+                                        <th>
+                                            AddressLine2
+                                        </th>
+                                        <th>
+                                            State
+                                        </th>
+                                        <th>
+                                            City
+                                        </th>
+                                        <th>
+                                            Pincode
                                         </th>
                                         <th>
                                             Created On
@@ -67,53 +104,77 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                    <tr>
-                                        <td>
+                                        <tr>
+                                            <td>
 
-                                            <button type="button" class="btn btn-primary btn-xs" title="Edit" onclick="javascript:location.href='/Admin/User/Edit/@item.Id'"><i class="far fa-edit"></i></button>
-                                            <button type="button" class="btn btn-success btn-xs" title="View" onclick="javascript:location.href='/Admin/User/Details/@item.Id'"><i class="fas fa-eye"></i></button>
+                                                <button type="button" class="btn btn-primary btn-xs" title="Edit" onclick="javascript:location.href='/Admin/User/Edit/@item.Id'"><i class="far fa-edit"></i></button>
+                                                @*<button type="button" class="btn btn-success btn-xs" title="View" onclick="javascript:location.href='/Admin/User/Details/@item.Id'"><i class="fas fa-eye"></i></button>*@
+                                                
 
-                                            @if (item.IsActive == true)
-                                            {
+                                                @if (item.IsActive == true)
+                                                {
 
-                                                <button type="button" class="btn btn-danger btn-xs" title="De-ctivate" onclick="fnDeActivateUser(@item.Id)"><i class="far fa-trash-alt"></i></button>
+                                                    <button type="button" class="btn btn-danger btn-xs" title="De-ctivate" onclick="fnDeActivateUser(@item.Id)"><i class="far fa-trash-alt"></i></button>
 
-                                            }
-                                            else
-                                            {
-                                                <button type="button" class="btn btn-danger btn-xs" title="Activate" onclick="fnActivateUser(@item.Id)"><i class="far fa-trash-alt"></i></button>
+                                                }
+                                                else
+                                                {
+                                                    <button type="button" class="btn btn-danger btn-xs" title="Activate" onclick="fnActivateUser(@item.Id)"><i class="far fa-trash-alt"></i></button>
 
-                                            }
+                                                }
 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Email)
-                                        </td>
-                                        <td>
-                                            @if (item.IsActive.Value)
-                                            {
-                                                <span>Active</span>
-                                            }
-                                            else
-                                            {
-                                                <span>De-Active</span>
-                                            }
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FullName)
+                                            </td>
+                                            <td>
+                                                @if (item.IsActive.Value)
+                                                {
+                                                    <span>Active</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>De-Active</span>
+                                                }
 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.CreatedOn)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.User1.FullName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ModifiedOn)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.User1.FullName)
-                                        </td>
-                                        
-                                    </tr>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.User2.FullName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SaleTarget)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.AddressLine1)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.AddressLine2)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.City)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.State)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Pincode)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedOn)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.User3.FullName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ModifiedOn)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.User1.FullName)
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                                 @*<tfoot>
@@ -125,6 +186,15 @@
                                             <th>CSS grade</th>
                                         </tr>
                                     </tfoot>*@
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <!-- /.card-body -->

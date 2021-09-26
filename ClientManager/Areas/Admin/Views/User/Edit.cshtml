@@ -52,6 +52,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="status">Status</label>
+                                            @Html.HiddenFor(model => model.Id, new { htmlAttributes = new { @id = "Id" } })
                                             @Html.HiddenFor(model => model.IsActive, new { htmlAttributes = new { @id = "hdnUserStatus" } })
                                             @Html.DropDownList("Status", null, htmlAttributes: new { @class = "form-control select2", @id = "ddlStatus", @onChange = "fnStatusChange()" })
                                         </div>
@@ -76,13 +77,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="status">Employee Id</label>
                                             @Html.EditorFor(model => model.EmployeeId, new { htmlAttributes = new { @class = "form-control", @id = "txtEmployeeId", @name = "EmployeeId" } })
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="status">Date of Birth</label>
                                             <div class="input-group date" data-target-input="nearest">
@@ -93,7 +94,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="status">Date of Joining</label>
                                             <div class="input-group date" data-target-input="nearest">
@@ -104,12 +105,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="ReportingManager">Reporting Manager</label>
-                                            @Html.DropDownList("ReportingManager", null, htmlAttributes: new { @class = "form-control select2", @id = "ddlReportingManager", @name = "ReportingManager" })
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -146,10 +142,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="ReportingManager">Reporting Manager</label>
+                                            @Html.DropDownList("ReportingManager", null, htmlAttributes: new { @class = "form-control select2", @id = "ddlReportingManager", @name = "ReportingManager" })
+                                        </div>
+                                    </div>                                 
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="NoOfFollowUps">Sale Target</label>
+                                            @Html.EditorFor(model => model.SaleTarget, new { htmlAttributes = new { @class = "form-control", @id = "txtSaleTarget", @type="numeric" } })
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button> <button type="submit" class="btn btn-danger">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Submit</button> <button type="button" class="btn btn-danger">Cancel</button>
                                 <button type="button" class="btn btn-outline-secondary" onclick="javascript:location.href='../List'" id="btnBack">Back to List</button>
                             </div>
 
@@ -192,7 +202,7 @@
             submitHandler: function () {
                 debugger;
                 // alert("Form successful submitted!");
-                fnSubmitSaleDetails();
+                fnSubmitUserDetails();
             }
         });
         $('#quickForm').validate({
@@ -237,34 +247,33 @@
 
 
     function fnStatusChange() {
-        $('#hdnUserStatus').val($('#ddlStatus').val());
+        $("input[name=IsActive]").val($('#ddlStatus').val());
     }
 
-    function fnSubmitSaleDetails() {
-        var SaleData = {
+    function fnSubmitUserDetails() {
+        debugger;
+        var UserData = {
             Id: $('#Id').val(),
-            SaleDate: $('#txtSaleDate').val(),
-            SalesRepresentativeId: $('#ddlRepresentative').val(),
-            Status: $('#ddlStatus').val(),
-            ClientName: $('#txtClientName').val(),
-            ClientEmail: $('#txtClientEmail').val(),
-            ClientPhoneNo: $('#txtClientPhoneNo').val(),
-            ProductName: $('#txtProductName').val(),
-            Capacity: $('#txtCapacity').val(),
-            Unit: $('#ddlUnit').val(),
-            RecentCallDate: $('#txtRecentCallDate').val(),
-            AnticipatedClosingDate: $('#txtAnticipatedClosingDate').val(),
-            NoOfFollowUps: $('#txtNoOfFollowUps').val(),
-            InvoiceNo: $('#txtInvoiceNo').val(),
-            InvoiceAmount: $('#txtInvoiceNo').val(),
-            DateOfClosing: $('#txtClosingDate').val(),
-            Remarks: $('#Remarks').val()
+            IsActive: IsActive: ($("input[name=IsActive]").val() == '1') ? true : false,
+            FullName: $('#txtFullName').val(),
+            UserId: $('#txtEmail').val(),
+            Password: $('#txtPassword').val(),
+            EmpId: $('#txtEmployeeId').val(),
+            DateOfBirth: $('#txtDOB').val(),
+            DateofJoining: $('#txtDOJ').val(),
+            ReportingManager: $('#ddlReportingManager').val(),
+            AddressLine1: $('#txtAddressLine1').val(),
+            AddressLine2: $('#txtAddressLine2').val(),
+            State: $('#txtState').val(),
+            City: $('#txtCity').val(),
+            PinCode: $('#txtPincode').val(),
+            SaleTarget: $('#txtSaleTarget').val()
         };
         debugger;
         $.ajax({
             type: "POST",
-            url: "/SaleActivities/Edit",
-            data: JSON.stringify(SaleData),
+            url: "/Admin/User/Edit",
+            data: JSON.stringify(UserData),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -275,14 +284,12 @@
                 else {
                     alert(data.message);
                 }
-
             },
             error: function () {
                 alert("Error occured!!  " + data.message)
             }
         });
     }
-
 
 </script>
 

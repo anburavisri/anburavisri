@@ -125,7 +125,7 @@ namespace ClientManager.Controllers
             var lastSavedId = 0;
             try
             {
-                var saleDetails = new SaleActivity { SaleDate = saleData.SaleDate, Status = saleData.Status, ClientPhoneNo = saleData.ClientPhoneNo, ClientEmail = saleData.ClientEmail, ClientName = saleData.ClientName, ProductName = saleData.ProductName, RecentCallDate = saleData.RecentCallDate, Capacity = saleData.Capacity, Unit = saleData.Unit, Remarks = saleData.Remarks, CreatedBy = currentUser.Id, CreatedOn = DateTime.Now, AnticipatedClosingDate = saleData.AnticipatedClosingDate, SalesRepresentativeId = saleData.SalesRepresentativeId, NoOfFollowUps = saleData.NoOfFollowUps, InvoiceAmount = saleData.InvoiceAmount, InvoiceNo = saleData.InvoiceNo };
+                var saleDetails = new SaleActivity { SaleDate = saleData.SaleDate, Status = saleData.Status, ClientPhoneNo = saleData.ClientPhoneNo, ClientEmail = saleData.ClientEmail, ClientName = saleData.ClientName, ProductName = saleData.ProductName, RecentCallDate = saleData.RecentCallDate, Capacity = saleData.Capacity, Unit = saleData.Unit, Remarks = saleData.Remarks, CreatedBy = currentUser.Id, CreatedOn = DateTime.Now, AnticipatedClosingDate = saleData.AnticipatedClosingDate, SalesRepresentativeId = saleData.SalesRepresentativeId, NoOfFollowUps = 1, InvoiceAmount = saleData.InvoiceAmount, InvoiceNo = saleData.InvoiceNo };
 
                 if (saleData.Status == 6)
                 {
@@ -141,7 +141,7 @@ namespace ClientManager.Controllers
 
                         if (lastSavedId > 0)
                         {
-                            jsonRes = new JsonReponse { message = "Sale Activity saved successfully!", status = "Success", redirectURL = "/SaleActivities/Edit/" + saleDetails.Id };
+                            jsonRes = new JsonReponse { message = "Sale Activity saved successfully!", status = "Success", redirectURL = "/SaleActivities/List" };
                         }
                         else
                         {
@@ -160,7 +160,7 @@ namespace ClientManager.Controllers
 
                     if (lastSavedId > 0)
                     {
-                        jsonRes = new JsonReponse { message = "Sale Activity saved successfully!", status = "Success", redirectURL = "/SaleActivities/Edit/" + saleDetails.Id };
+                        jsonRes = new JsonReponse { message = "Sale Activity saved successfully!", status = "Success", redirectURL = "/SaleActivities/List" };
                     }
                     else
                     {
@@ -255,7 +255,7 @@ namespace ClientManager.Controllers
                     {
                         if (lastSavedId > 0)
                         {
-                            jsonRes = new JsonReponse { message = "Sale Activity updated successfully!", status = "Success", redirectURL = "/SaleActivities/Edit/" + saleActivity.Id };
+                            jsonRes = new JsonReponse { message = "Sale Activity updated successfully!", status = "Success", redirectURL = "/SaleActivities/List" }; //+ saleActivity.Id 
                         }
                         else
                         {

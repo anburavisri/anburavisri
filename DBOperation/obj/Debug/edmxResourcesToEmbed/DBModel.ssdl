@@ -49,6 +49,29 @@
     <Property Name="ModifiedOn" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
   </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="DateOfJoining" Type="datetime" />
+    <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddressLine1" Type="nvarchar" MaxLength="100" />
+    <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReportingManager" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
   <EntityType Name="Products">
     <Key>
       <PropertyRef Name="Id" />
@@ -242,6 +265,7 @@
     <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="IsActive" Type="bit" />
     <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="DateOfJoining" Type="datetime" />
     <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" />
     <Property Name="AddressLine1" Type="nvarchar" MaxLength="100" />
     <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" />
@@ -249,6 +273,7 @@
     <Property Name="City" Type="nvarchar" MaxLength="50" />
     <Property Name="Pincode" Type="nvarchar" MaxLength="50" />
     <Property Name="ReportingManager" Type="int" />
+    <Property Name="SaleTarget" Type="int" />
     <Property Name="CreatedOn" Type="datetime" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="ModifiedOn" Type="datetime" />
@@ -698,11 +723,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="GetMonthlySalesReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetMonthlySalesReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserType" Type="nvarchar" Mode="In" />
+    <Parameter Name="CurrentUserId" Type="int" Mode="In" />
+    <Parameter Name="UserManagerId" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="ClientManagerModelStoreContainer">
     <EntitySet Name="ClientContacts" EntityType="Self.ClientContacts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectClient" EntityType="Self.ProjectClient" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />

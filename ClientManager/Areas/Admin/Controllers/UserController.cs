@@ -21,8 +21,13 @@ namespace ClientManager.Areas.Admin.Controllers
         [CustomAuthorize("Admin", "Manager")]
         public ActionResult List()
         {
+            var currentUser = (UserDetails)Session["UserDetails"];
             var user = db.Users;
-            return View(user.ToList());
+            var restrictedUSers = user.Where(wh => wh.UserRoles.Any(rol => rol.Role.RoleName == "Admin")).Select(sel => sel.Id).ToList();
+            if (currentUser.UserRoles.Any(wh => wh.RoleName.ToLower() == "admin"))
+                return View(user);
+            else
+                return View(user.Where(wh => !restrictedUSers.Contains(wh.Id) & wh.ReportingManager == currentUser.Id).ToList());
         }
 
         [CustomAuthorize("Admin")]
@@ -101,6 +106,64 @@ namespace ClientManager.Areas.Admin.Controllers
         }
 
         [CustomAuthorize("Admin")]
+        // GET: Admin/User/Create
+        public ActionResult Create()
+        {
+            var currentUser = (UserDetails)Session["UserDetails"];
+            ViewBag.ReportingManager = new SelectList(db.Users, "Id", "FullName");
+            List<SelectListItem> statusList = new List<SelectListItem>();
+            statusList.Insert(0, (new SelectListItem { Text = "Active", Value = "1" }));
+            statusList.Insert(1, (new SelectListItem { Text = "De-Active", Value = "0" }));
+            ViewBag.Status = new SelectList(statusList, "Value", "Text", 1).ToList();
+            return View();
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Admin")]
+        public ActionResult Create(UserData userData)
+        {
+            var currentUser = (UserDetails)Session["UserDetails"];
+            ViewBag.ReportingManager = new SelectList(db.Users, "Id", "FullName");
+
+            List<SelectListItem> statusList = new List<SelectListItem>();
+            statusList.Insert(0, (new SelectListItem { Text = "De-Active", Value = "0" }));
+            statusList.Insert(1, (new SelectListItem { Text = "Active", Value = "1" }));
+            JsonReponse jsonRes = null;
+            ViewBag.Status = new SelectList(statusList, "Value", "Text", 1).ToList();
+            try
+            {
+                var user = db.Users.FirstOrDefault(wh => wh.Id == userData.Id);
+                int lastSavedId = 0;
+
+                if (string.IsNullOrEmpty(userData.UserId) || string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.FullName))
+                {
+                    jsonRes = new JsonReponse { message = "Enter all required fields.", status = "Failed", redirectURL = "" };
+                }
+                else
+                {
+                    db.Users.Add(new User { FullName = userData.FullName, Email = userData.UserId, Password = userData.Password, AddressLine1 = userData.AddressLine1, AddressLine2 = userData.AddressLine2, City = userData.City, State= userData.State, Pincode = userData.PinCode, IsActive = userData.IsActive, DateOfBirth = userData.DateOfBirth, DateOfJoining = userData.DateofJoining, EmployeeId = userData.EmpId, ReportingManager = userData.ReportingManager, SaleTarget = userData.SaleTarget, CreatedBy = currentUser.Id, CreatedOn = DateTime.Now });
+                    lastSavedId = db.SaveChanges();
+                }
+
+                if (lastSavedId > 0)
+                {
+                    jsonRes = new JsonReponse { message = "User created successfully!", status = "Success", redirectURL = "/Admin/User/List" };
+                }
+                else
+                {
+                    jsonRes = new JsonReponse { message = "User creatikon not completed, try again after sometime.", status = "Failed", redirectURL = "" };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                jsonRes = new JsonReponse { message = ex.Message, status = "Error", redirectURL = "" };
+            }
+
+            return Json(jsonRes, JsonRequestBehavior.AllowGet);
+        }
+
+        [CustomAuthorize("Admin","Manager")]
         // GET: Admin/User/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -108,16 +171,15 @@ namespace ClientManager.Areas.Admin.Controllers
             ViewBag.ReportingManager = new SelectList(db.Users, "Id", "FullName");
 
             List<SelectListItem> statusList = new List<SelectListItem>();
-            statusList.Insert(0, (new SelectListItem { Text = "Active", Value = "0" }));
-            statusList.Insert(1, (new SelectListItem { Text = "De-Active", Value = "1" }));
-            
-            ViewBag.Status = new SelectList(statusList, "Value", "Text", Convert.ToInt16((currentUser.IsActive))).ToList();
+            statusList.Insert(0, (new SelectListItem { Text = "Active", Value = "1" }));
+            statusList.Insert(1, (new SelectListItem { Text = "De-Active", Value = "0" }));
 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.Users.Find(id);
+            ViewBag.Status = new SelectList(statusList, "Value", "Text", Convert.ToInt16((user.IsActive))).ToList();
             if (user == null)
             {
                 return HttpNotFound();
@@ -133,7 +195,7 @@ namespace ClientManager.Areas.Admin.Controllers
         [CustomAuthorize("Admin", "Manager")]
         //[ValidateAntiForgeryToken]
         //public ActionResult Edit([Bind(Include = "Id,SaleDate,Status,ClientName,ClientEmail,ClientPhoneNo,ProductId,Capacity,Unit,RecentCallDate,AnticipatedClosingDate,NoOfFollowUps,Remarks,SalesRepresentativeId,InvoiceNo,InvoiceAmount,DateOfClosing,CreatedOn,CreatedBy,ModifiedOn,ModifiedBy")] SaleActivity saleActivity)
-        public ActionResult Edit(UserDetails userData)
+        public ActionResult Edit(UserData userData)
         {
             JsonReponse jsonRes = null;
 
@@ -142,6 +204,7 @@ namespace ClientManager.Areas.Admin.Controllers
                 var currentUser = (UserDetails)Session["UserDetails"];
 
                 var user = db.Users.FirstOrDefault(wh => wh.Id == userData.Id);
+                var messagetext = "";
                 int lastSavedId = 0;
                 if (user == null)
                 {
@@ -149,25 +212,51 @@ namespace ClientManager.Areas.Admin.Controllers
                 }
                 else
                 {
-                    if (!true)
+                    if (string.IsNullOrEmpty(userData.UserId) || string.IsNullOrEmpty(userData.Password) || string.IsNullOrEmpty(userData.FullName))
                     {
                         jsonRes = new JsonReponse { message = "Enter all required fields.", status = "Failed", redirectURL = "" };
                     }
                     else
                     {
-                        db.Users.Add(new User());
+
                         db.Entry(user).State = EntityState.Modified;
+                        if (currentUser.UserRoles.Any(wh => wh.RoleName.ToLower() == "admin"))
+                        {
+                            user.FullName = userData.FullName;
+                            user.Email = userData.UserId;
+                            user.Password = userData.Password;
+                            user.EmployeeId = userData.EmpId;
+                            user.AddressLine1 = userData.AddressLine1;
+                            user.AddressLine2 = userData.AddressLine2;
+                            user.City = userData.City;
+                            user.State = userData.State;
+                            user.Pincode = userData.PinCode;
+                            user.IsActive = userData.IsActive;
+                            user.DateOfBirth = userData.DateOfBirth;
+                            user.DateOfJoining = userData.DateofJoining;
+                            user.ReportingManager = userData.ReportingManager;
+                            messagetext = "User Updated";
+                        }
+                        else
+                        {
+                            messagetext = "User Sale Target";
+                        }
+
+                        user.ModifiedBy = currentUser.Id;
+                        user.ModifiedOn = DateTime.Now;
+                        user.SaleTarget = userData.SaleTarget;
+                        
                         lastSavedId = db.SaveChanges();
                     }
 
 
                     if (lastSavedId > 0)
                     {
-                        jsonRes = new JsonReponse { message = "User updated successfully!", status = "Success", redirectURL = "/Admin/User/Edit/" + user.Id };
+                        jsonRes = new JsonReponse { message = messagetext + " successfully!", status = "Success", redirectURL = "/Admin/User/List" };
                     }
                     else
                     {
-                        jsonRes = new JsonReponse { message = "User update not completed, try again after sometime.", status = "Failed", redirectURL = "" };
+                        jsonRes = new JsonReponse { message = messagetext + " not completed, try again after sometime.", status = "Failed", redirectURL = "" };
                     }
                 }
             }
@@ -242,14 +331,7 @@ namespace ClientManager.Areas.Admin.Controllers
         //    return View(user);
         //}
 
-        //// GET: Admin/User/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.ModifiedBy = new SelectList(db.Users, "Id", "Password");
-        //    ViewBag.ReportingManager = new SelectList(db.Users, "Id", "Password");
-        //    ViewBag.CreatedBy = new SelectList(db.Users, "Id", "Password");
-        //    return View();
-        //}
+        
 
         //// POST: Admin/User/Create
         //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -258,9 +340,11 @@ namespace ClientManager.Areas.Admin.Controllers
         //[ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "Id,Password,FullName,Email,IsActive,ReportingManager,CreatedOn,CreatedBy,ModifiedOn,ModifiedBy,DateOfBirth,EmployeeId,AddressLine1,AddressLine2,State,City,Pincode")] User user)
         //{
+
+
         //    if (ModelState.IsValid)
         //    {
-        //        db.Users.Add(user);
+        //        db.Users.Add(new User { FullName = userData.FullName, Email = userData.UserId, Password = userData.Password, AddressLine1 = userData.AddressLine1, AddressLine2 = userData.AddressLine2, City = userData.City, IsActive = userData.IsActive, DateOfBirth = userData.DateOfBirth, DateOfJoining = userData.DateofJoining, EmployeeId = userData.EmpId, ModifiedBy = currentUser.Id, ModifiedOn = DateTime.Now });
         //        db.SaveChanges();
         //        return RedirectToAction("Index");
         //    }
@@ -342,5 +426,7 @@ namespace ClientManager.Areas.Admin.Controllers
         //    }
         //    base.Dispose(disposing);
         //}
+
+
     }
 }

@@ -165,7 +165,12 @@
       <End Role="User" EntitySet="Users" />
       <End Role="User1" EntitySet="Users" />
     </AssociationSet>
-    <FunctionImport Name="GetMonthlySalesReport" ReturnType="Collection(ClientManagerModel.GetMonthlySalesReport_Result)" />
+    <FunctionImport Name="GetMonthlySalesReport" ReturnType="Collection(ClientManagerModel.GetMonthlySalesReport_Result)">
+      <Parameter Name="UserType" Mode="In" Type="String" />
+      <Parameter Name="CurrentUserId" Mode="In" Type="Int32" />
+      <Parameter Name="UserManagerId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Employees" EntityType="ClientManagerModel.Employee" />
   </EntityContainer>
   <EntityType Name="ClientContact">
     <Key>
@@ -494,6 +499,8 @@
     <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfJoining" Type="DateTime" Precision="3" />
+    <Property Name="SaleTarget" Type="Int32" />
   </EntityType>
   <Association Name="FK_ClientContacts_Clients">
     <End Type="ClientManagerModel.Client" Role="Client" Multiplicity="1" />
@@ -945,4 +952,27 @@
     <Property Type="Int32" Name="orders" Nullable="true" />
     <Property Type="Int32" Name="cancels" Nullable="true" />
   </ComplexType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="DateOfJoining" Type="DateTime" Precision="3" />
+    <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReportingManager" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+  </EntityType>
 </Schema>

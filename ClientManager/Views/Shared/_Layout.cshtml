@@ -288,6 +288,12 @@
                                     if (currentUser.UserRoles.Any(wh => wh.RoleName.ToLower() == "admin"))
                                     {
                                         <li class="nav-item">
+                                            <a href="~/Home/MyDashboard" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>My Dashboard</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a href="~/Home/AdminDashboard" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Admin Dashboard</p>
@@ -305,6 +311,12 @@
                                     }
                                     else if (currentUser.UserRoles.Any(wh => wh.RoleName.ToLower() == "manager"))
                                     {
+                                        <li class="nav-item">
+                                            <a href="~/Home/MyDashboard" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>My Dashboard</p>
+                                            </a>
+                                        </li>
                                         <li class="nav-item">
                                             <a href="~/Home/ManagerDashboard" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>

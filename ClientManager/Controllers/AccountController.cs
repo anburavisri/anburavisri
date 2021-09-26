@@ -48,7 +48,7 @@ namespace ClientManager.Controllers
                 }
                 else if (!string.IsNullOrEmpty(userLogin.Email) && !string.IsNullOrEmpty(userLogin.Password))
                 {
-                    User userData = db.Users.FirstOrDefault(wh => wh.Email == userLogin.Email & wh.Password == userLogin.Password);
+                    User userData = db.Users.FirstOrDefault(wh => wh.Email == userLogin.Email & wh.Password == userLogin.Password & wh.IsActive == true);
 
                     if (userData == null)
                     {
@@ -73,7 +73,7 @@ namespace ClientManager.Controllers
 
                         Session["UserDetails"] = userDetails;
 
-                        jsonRes = new JsonReponse { message = "Valid Credentials", status = "Success", redirectURL = "/Home/" + (userDetails.UserRoles.Any(wh => wh.RoleName.ToLower() == "admin") ? "AdminDashboard" : (userDetails.UserRoles.Any(wh => wh.RoleName.ToLower() == "manager")) ? "ManagerDashboard" : "MyDashboard")};
+                        jsonRes = new JsonReponse { message = "Valid Credentials", status = "Success", redirectURL = "/Home/" + (userDetails.UserRoles.Any(wh => wh.RoleName.ToLower() == "admin") ? "MyDashboard" : (userDetails.UserRoles.Any(wh => wh.RoleName.ToLower() == "manager")) ? "MyDashboard" : "MyDashboard")};
                     }
                 }
             }
