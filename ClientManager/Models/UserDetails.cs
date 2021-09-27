@@ -5,6 +5,11 @@ using System.Web;
 
 namespace ClientManager.Models
 {
+    public class UserRoleData
+    {
+        public int UserId { get; set; }
+        public int[] SelectedRoles { get; set; }        
+    }
     public class UserDetails
     {
         public int Id { get; set; }        
