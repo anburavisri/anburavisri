@@ -247,14 +247,14 @@
 
 
     function fnStatusChange() {
-        $("input[name=IsActive]").val($('#ddlStatus').val());
+        $("input[name=IsActive]").val(($('#ddlStatus').val()=='1' ? true: false));
     }
 
     function fnSubmitUserDetails() {
         debugger;
         var UserData = {
             Id: $('#Id').val(),
-            IsActive: IsActive: ($("input[name=IsActive]").val() == '1') ? true : false,
+            IsActive: ($("input[name=IsActive]").val().toLowerCase() == 'true') ? true : false,
             FullName: $('#txtFullName').val(),
             UserId: $('#txtEmail').val(),
             Password: $('#txtPassword').val(),
@@ -267,7 +267,7 @@
             State: $('#txtState').val(),
             City: $('#txtCity').val(),
             PinCode: $('#txtPincode').val(),
-            SaleTarget: $('#txtSaleTarget').val()
+            SaleTarget: $('#txtSaleTarget').val(),
         };
         debugger;
         $.ajax({

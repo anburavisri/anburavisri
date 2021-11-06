@@ -127,6 +127,9 @@ namespace ClientManager.Controllers
             {
                 var saleDetails = new SaleActivity { SaleDate = saleData.SaleDate, Status = saleData.Status, ClientPhoneNo = saleData.ClientPhoneNo, ClientEmail = saleData.ClientEmail, ClientName = saleData.ClientName, ProductName = saleData.ProductName, RecentCallDate = saleData.RecentCallDate, Capacity = saleData.Capacity, Unit = saleData.Unit, Remarks = saleData.Remarks, CreatedBy = currentUser.Id, CreatedOn = DateTime.Now, AnticipatedClosingDate = saleData.AnticipatedClosingDate, SalesRepresentativeId = saleData.SalesRepresentativeId, NoOfFollowUps = 1, InvoiceAmount = saleData.InvoiceAmount, InvoiceNo = saleData.InvoiceNo };
 
+                //appending current date with Remarks
+                saleDetails.Remarks = saleData.Remarks + '-' + Convert.ToDateTime(saleData.RecentCallDate).ToShortDateString();
+
                 if (saleData.Status == 6)
                 {
                     if (saleData.SaleDate == null || saleData.SalesRepresentativeId <= 0 || saleData.Status <= 0 || string.IsNullOrEmpty(saleData.ClientPhoneNo) || string.IsNullOrEmpty(saleData.ClientName) || string.IsNullOrEmpty(saleData.ProductName)  || saleData.RecentCallDate == null || string.IsNullOrEmpty(saleData.Remarks) || string.IsNullOrEmpty(saleData.Capacity) || string.IsNullOrEmpty(saleData.Unit) || string.IsNullOrEmpty(saleData.InvoiceNo) || saleData.InvoiceAmount < 0)
@@ -197,7 +200,7 @@ namespace ClientManager.Controllers
                 return HttpNotFound();
             }
             ViewBag.Status = new SelectList(db.SalesStatus, "Id", "Status", saleActivity.SalesStatu.Id);
-            ViewBag.Representative = new SelectList(db.Users, "Id", "FullName", currentUser.Id);
+            ViewBag.Representative = new SelectList(db.Users, "Id", "FullName", saleActivity.SalesRepresentativeId);
             //ViewBag.ProductName = new SelectList(db.Products, "Id", "ProductName", saleActivity.ProductId);
             ViewBag.Unit = new SelectList(Utility.DefaultList.GetUnitList(), "Text", "Value", saleActivity.Unit);
             ViewBag.AccessLevel = (saleActivity.CreatedBy == currentUser.Id || currentUser.UserRoles.Any(wh => wh.RoleName.ToLower() == "admin")) ? "Full" : "View";
@@ -295,7 +298,7 @@ namespace ClientManager.Controllers
             saleActivity.RecentCallDate = saleData.RecentCallDate;
             saleActivity.Capacity = saleData.Capacity;
             saleActivity.Unit = saleData.Unit;
-            saleActivity.Remarks = saleActivity.Remarks + ((!string.IsNullOrEmpty(saleData.Remarks)) ? "<br/>" + saleData.Remarks : "");
+            saleActivity.Remarks = saleActivity.Remarks + ((!string.IsNullOrEmpty(saleData.Remarks)) ? "<br/>" + saleData.Remarks + '-' + Convert.ToDateTime(saleData.RecentCallDate).ToShortDateString() : "");
             saleActivity.AnticipatedClosingDate = saleData.AnticipatedClosingDate;
             saleActivity.SalesRepresentativeId = saleData.SalesRepresentativeId;
             saleActivity.NoOfFollowUps = (!string.IsNullOrEmpty(saleData.Remarks)) ? saleActivity.NoOfFollowUps + 1 : saleActivity.NoOfFollowUps;

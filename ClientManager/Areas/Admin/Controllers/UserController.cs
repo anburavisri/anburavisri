@@ -247,16 +247,15 @@ namespace ClientManager.Areas.Admin.Controllers
                         user.SaleTarget = userData.SaleTarget;
                         
                         lastSavedId = db.SaveChanges();
-                    }
 
-
-                    if (lastSavedId > 0)
-                    {
-                        jsonRes = new JsonReponse { message = messagetext + " successfully!", status = "Success", redirectURL = "/Admin/User/List" };
-                    }
-                    else
-                    {
-                        jsonRes = new JsonReponse { message = messagetext + " not completed, try again after sometime.", status = "Failed", redirectURL = "" };
+                        if (lastSavedId > 0)
+                        {
+                            jsonRes = new JsonReponse { message = messagetext + " successfully!", status = "Success", redirectURL = "/Admin/User/List" };
+                        }
+                        else
+                        {
+                            jsonRes = new JsonReponse { message = messagetext + " Not completed, try again after sometime.", status = "Failed", redirectURL = "" };
+                        }
                     }
                 }
             }
